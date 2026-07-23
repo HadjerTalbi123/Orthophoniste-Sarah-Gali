@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Gali — Orthophoniste | Ortho Space Algérie</title>
+
+    <!-- Icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/Portfolio.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ===== Sidebar (menu) ===== -->
+        <aside class="sidebar">
+            <nav class="menu">
+                <a href="Accueil.html"  aria-label="Accueil">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <a href="Profil.html"  aria-label="Profil">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="Portfolio.html" class="active" aria-label="Portfolio">
+                    <i class="fa-solid fa-folder-open"></i>
+                </a>
+                <a href="Contact.html" aria-label="Contact">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- ===== Profil ===== -->
+        <aside class="profile">
+            <img src="../images/LogoOrtho.png" alt="Ortho Space Algérie" class="avatar">
+
+            <h2>SARAH GALI</h2>
+            <h3>سارة ڨالي</h3>
+            <span>Orthophoniste • Formatrice</span>
+
+            <div class="social">
+                <a href="mailto:orthospacealgeria@gmail.com" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:+213540932616" aria-label="Téléphone">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+                <a href="https://instagram.com/orthospacealgeria" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+
+            <button class="contact-btn" type="button">
+                Prendre un rendez-vous
+            </button>
+        </aside>
+
+        <!-- ===== Contenu principal ===== -->
+        <main class="content">
+
+            <header class="content-header">
+                <span class="section-label">MON TRAVAIL</span>
+                <h1 class="section-title">
+                    Projets <span class="highlight">Sélectionnés</span>
+                </h1>
+                <p class="section-subtitle">
+                    Une sélection de projets que j'ai fait et des formations que j'ai organiser.
+                </p>
+            </header>
+
+            <!-- ===== Liste des projets ===== -->
+            <div class="projects-list"></div>
+
+        </main>
+
+    </div>
+
+    <!-- Fond animé -->
+    <div class="nebula"></div>
+    <canvas id="stars"></canvas>
+
+    <!-- Scripts -->
+    <script src="../scripts/Portfolio.js"></script>
+
+</body>
+</html>
