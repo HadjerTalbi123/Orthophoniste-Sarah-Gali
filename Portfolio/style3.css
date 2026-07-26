@@ -779,3 +779,139 @@ canvas {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================================================
+   MOBILE (téléphone) — mise en page empilée + scroll
+   ========================================================================== */
+
+@media (max-width: 760px) {
+
+    html, body {
+        height: auto;
+        min-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* On empile : profil > contenu > menu (menu collé en bas) */
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 20px);
+        height: auto;
+        min-height: calc(100vh - 20px);
+        margin: 10px;
+        gap: 15px;
+        padding-bottom: 90px; /* laisse la place au menu fixé en bas */
+    }
+
+    /* Menu du bas, façon barre de navigation mobile */
+    .sidebar {
+        order: 3;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+        height: 68px;
+        flex-direction: row;
+        z-index: 1000;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .menu a {
+        width: 48px;
+        height: 48px;
+        font-size: 19px;
+        border-radius: 14px;
+    }
+
+    /* Carte profil */
+    .profile {
+        order: 1;
+        padding: 25px 20px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile h2 {
+        font-size: 18px;
+    }
+
+    .profile h3 {
+        font-size: 16px;
+    }
+
+    /* Contenu principal */
+    .content {
+        order: 2;
+        height: auto;
+        padding: 25px 20px;
+        overflow-y: visible;
+    }
+
+    .content h1 {
+        font-size: 32px;
+    }
+
+    .section-title {
+        font-size: 21px;
+        white-space: normal;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+    }
+
+    /* Cartes de projet en une colonne */
+    .project-card {
+        padding: 20px;
+    }
+
+    .project-number {
+        font-size: 60px;
+        top: -6px;
+        right: 14px;
+    }
+
+    .project-card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-title {
+        font-size: 19px;
+    }
+
+    .project-card-image,
+    .project-video-cover {
+        max-height: 220px;
+    }
+
+    /* Modal de détails */
+    .modal-overlay {
+        padding: 20px 12px;
+    }
+
+    .modal-box {
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+    }
+
+    .modal-videos-grid {
+        grid-template-columns: 1fr;
+    }
+}
