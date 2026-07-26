@@ -453,7 +453,7 @@ function renderProjects() {
             </div>
         </article>
     `).join("") + `
-        <a href="Contact.html" class="know-link">
+        <a href="../Contact/index4.html" class="know-link">
             <span class="know-text">Connectons-nous</span>
             <span class="know-arrow">
                 <i class="fa-solid fa-arrow-right-long"></i>

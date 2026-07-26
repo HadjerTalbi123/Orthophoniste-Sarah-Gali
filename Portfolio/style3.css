@@ -545,6 +545,18 @@ canvas {
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
+
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.know-link.reveal.in-view,
+.know-link.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .know-text {
@@ -767,4 +779,3 @@ canvas {
         grid-template-columns: 1fr;
     }
 }
-
