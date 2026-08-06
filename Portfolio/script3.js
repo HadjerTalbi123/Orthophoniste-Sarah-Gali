@@ -415,7 +415,6 @@ const projects = [
             "../images/congres-neurodev-10.jpg",
             "../images/congres-neurodev-11.jpg"
         ]
-<<<<<<< HEAD
     },
     {
         number: "16",
@@ -444,8 +443,6 @@ const projects = [
             "../images/ia-medecine-11.jpg",
             "../images/ia-medecine-12.jpg"
         ]
-=======
->>>>>>> 7a03433dc46979e503b258711249206cc92ea6f4
     }
 ];
 
