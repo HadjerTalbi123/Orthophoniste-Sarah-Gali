@@ -1,0 +1,712 @@
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #0d1a3a 0%, #060814 55%, #000000 100%);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================================
+   FOND ANIMÉ (étoiles + nébuleuse)
+   ========================================================================== */
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 0;
+}
+
+.nebula {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(120, 60, 200, .18), transparent 40%),
+        radial-gradient(circle at 75% 65%, rgba(30, 120, 200, .15), transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(200, 60, 130, .12), transparent 40%);
+    mix-blend-mode: screen;
+    animation: drift 30s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes drift {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.15) translate(2%, -2%);
+    }
+}
+
+/* ==========================================================================
+   LAYOUT GÉNÉRAL
+   ========================================================================== */
+
+.container {
+    position: relative;
+    z-index: 10;
+
+    width: calc(100% - 120px);
+    height: calc(100vh - 120px);
+    margin: 60px;
+
+    display: grid;
+    grid-template-columns: 90px 340px 1fr;
+    gap: 25px;
+
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   SIDEBAR (menu icônes)
+   ========================================================================== */
+
+.sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    border-radius: 30px;
+    background: rgba(20, 20, 25, .45);
+    border: 1px solid rgba(255, 255, 255, .08);
+    backdrop-filter: blur(18px);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu a {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, .05);
+    border-radius: 20px;
+    font-size: 23px;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.menu a:hover {
+    background: #58d4ff;
+    transform: translateY(-4px);
+}
+
+.menu .active {
+    background: #58d4ff;
+}
+
+.settings {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, .05);
+    border-radius: 18px;
+    color: white;
+    font-size: 20px;
+}
+
+/* ==========================================================================
+   PROFIL
+   ========================================================================== */
+
+.profile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 20px;
+    padding-top: 35px;
+
+    color: white;
+    background: rgba(20, 20, 25, .45);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 30px;
+    backdrop-filter: blur(18px);
+    box-sizing: border-box;
+}
+
+.avatar {
+    width: 130px;
+    height: 130px;
+    padding: 8px;
+    object-fit: contain;
+
+    background: white;
+    border-radius: 50%;
+    border: 3px solid rgba(88, 212, 255, .4);
+}
+
+.profile h2 {
+    font-size: 20px;
+    margin: 12px 0 6px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.profile h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #58d4ff;
+}
+
+.profile span {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #d8d8d8;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.description {
+    margin: 20px 0;
+    max-width: 240px;
+    color: #bdbdbd;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+    margin: 18px 0 22px;
+}
+
+.social a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 17px;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .08);
+    transition: .3s;
+}
+
+.social a:hover {
+    background: #58d4ff;
+    transform: translateY(-5px);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    transition: .3s;
+}
+
+.item:hover {
+    background: rgba(88, 212, 255, .08);
+    border-color: rgba(88, 212, 255, .25);
+}
+
+.item i {
+    width: 20px;
+    color: #58d4ff;
+    font-size: 18px;
+}
+
+.item p {
+    margin: 0;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+.contact-btn {
+    width: 100%;
+    height: 48px;
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #3dc9ff, #5ef0ff);
+    color: #04111d;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(88, 212, 255, .5);
+}
+
+/* ==========================================================================
+   CONTENT (zone principale)
+   ========================================================================== */
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 35px 45px;
+
+    color: white;
+    border-radius: 30px;
+    background: rgba(20, 20, 25, .45);
+    border: 1px solid rgba(255, 255, 255, .08);
+    backdrop-filter: blur(18px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .15);
+    border-radius: 10px;
+}
+
+.content h1 {
+    font-size: 55px;
+}
+
+.content p {
+    font-size: 18px;
+    color: #cfcfcf;
+    line-height: 1.8;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    background: #8a4fff;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #8a4fff;
+}
+
+/* ==========================================================================
+   CONTENT — Page Contact
+   ========================================================================== */
+
+.content-header {
+    margin-bottom: 36px;
+}
+
+.content-header .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #8a8a8a;
+    margin-bottom: 12px;
+}
+
+.content-header h1 {
+    margin-top: 20px;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.content-header h1 .highlight {
+    color: #58d4ff;
+}
+
+.content-header p {
+    max-width: 620px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #b8b8c2;
+}
+
+.contact-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- Liste des coordonnées --- */
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.info-list .item {
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.item-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+    background: rgba(88, 212, 255, .12);
+    color: #58d4ff;
+    font-size: 17px;
+}
+
+.item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.item-text .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8a8a94;
+}
+
+.item-text p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #f0f0f2;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+.availability-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px 20px;
+    margin-top: 4px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #58ffa0;
+    line-height: 1.4;
+
+    background: rgba(88, 255, 160, .08);
+    border: 1px solid rgba(88, 255, 160, .25);
+    border-radius: 30px;
+}
+
+.availability-badge .dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #58ffa0;
+    box-shadow: 0 0 8px #58ffa0;
+}
+
+/* --- Formulaire --- */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    padding: 46px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8a8a94;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 20px 18px;
+
+    font-family: inherit;
+    font-size: 13px;
+    color: white;
+
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: .25s;
+}
+
+.form-group select {
+    appearance: none;
+    padding-right: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%2358d4ff' stroke-width='2' fill='none' fill-rule='evenodd'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #12121a;
+    color: white;
+}
+
+.form-group textarea {
+    min-height: 260px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #6c6c78;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #58d4ff;
+    background: rgba(88, 212, 255, .06);
+    box-shadow: 0 0 0 3px rgba(88, 212, 255, .12);
+}
+
+.char-counter {
+    align-self: flex-end;
+    font-size: 11px;
+    color: #6c6c78;
+}
+
+.contact-form .contact-btn {
+    margin-top: 6px;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    border-radius: 13px;
+}
+
+.form-feedback {
+    margin: 0;
+    min-height: 20px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.form-feedback.success {
+    color: #58ffa0;
+}
+
+.form-feedback.error {
+    color: #ff6b6b;
+}
+
+/* ==========================================================================
+   TABLETTE — empile infos + formulaire avant que ça déborde
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   MOBILE (téléphone) — mise en page empilée + scroll
+   ========================================================================== */
+
+@media (max-width: 750px) {
+
+    html, body {
+        height: auto;
+        min-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* On empile : profil > contenu > menu (menu collé en bas) */
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 20px);
+        height: auto;
+        min-height: calc(100vh - 20px);
+        margin: 10px;
+        gap: 15px;
+        padding-bottom: 90px; /* laisse la place au menu fixé en bas */
+    }
+
+    /* Menu du bas, façon barre de navigation mobile */
+    .sidebar {
+        order: 3;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+        height: 68px;
+        flex-direction: row;
+        z-index: 1000;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .menu a {
+        width: 48px;
+        height: 48px;
+        font-size: 19px;
+        border-radius: 14px;
+    }
+
+    /* Carte profil */
+    .profile {
+        order: 1;
+        padding: 25px 20px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile h2 {
+        font-size: 18px;
+    }
+
+    .profile h3 {
+        font-size: 16px;
+    }
+
+    /* Contenu principal (si présent sur cette page) */
+    .content {
+        order: 2;
+        height: auto;
+        padding: 25px 20px;
+        overflow-y: visible;
+    }
+
+    .content h1 {
+        font-size: 32px;
+    }
+
+    .content-header h1 {
+        font-size: 28px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .form-group textarea {
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 420px) {
+    .contact-form {
+        padding: 16px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 13px 14px;
+        font-size: 14px;
+    }
+
+    .content-header h1 {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================================================
+   RÉVÉLATION AU SCROLL — en-tête, coordonnées et formulaire en cascade
+   ========================================================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
